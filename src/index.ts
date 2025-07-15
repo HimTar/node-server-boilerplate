@@ -18,11 +18,11 @@ const StartServer = async () => {
   // Registring Routes
   registerRoutes(app);
 
-  const PORT = Config.port;
+  const port = Config.PORT;
 
   // Starting and Listening
-  app.listen(PORT, () => {
-    logger.info(`Server Listening on PORT : ${PORT}`);
+  app.listen(port, () => {
+    logger.info(`Server Listening on PORT : ${port}`);
   });
 };
 

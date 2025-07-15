@@ -2,12 +2,12 @@ import dotenv from "dotenv";
 import { logger } from "../external";
 
 export const Config = {
-  environment: "",
-  isDevEnvironment: true,
-  isProdEnvironment: false,
-  databaseURL: "",
-  port: 4000,
-  host: "0.0.0.0",
+  ENV: "",
+  IS_DEV_ENV: true,
+  IS_PROD_ENV: false,
+  DATABASE_CONNECTION_URL: "",
+  PORT: 4000,
+  HOST: "localhost",
 };
 
 export const loadConfigs = () => {
@@ -18,21 +18,17 @@ export const loadConfigs = () => {
 
   const envFound = dotenv.config();
   if (envFound.error) {
-    // This error should crash whole process
-
     throw new Error("⚠️  Couldn't find .env file  ⚠️");
   }
 
   // Setting up Config Variables
-  Config.environment = process.env.NODE_ENV;
-  Config.isDevEnvironment = process.env.NODE_ENV === "development";
-  Config.isProdEnvironment = process.env.NODE_ENV === "production";
-  Config.databaseURL =
-    process.env.NODE_ENV === "development"
-      ? process.env.DEV_MONGO_URI ?? ""
-      : process.env.PROD_MONGO_URI ?? "";
+  Config.ENV = process.env.NODE_ENV;
+  Config.IS_DEV_ENV = process.env.NODE_ENV === "development";
+  Config.IS_PROD_ENV = process.env.NODE_ENV === "production";
+  Config.DATABASE_CONNECTION_URL = process.env.POSTGRES_CONNECTION_URL ?? ""
 
-  if (process.env.PORT) Config.port = parseInt(process.env.PORT);
+  if (process.env.PORT) Config.PORT = parseInt(process.env.PORT);
+  if (process.env.HOST) Config.HOST = process.env.HOST;
 
   logger.info("Env Variables loaded successfully");
 

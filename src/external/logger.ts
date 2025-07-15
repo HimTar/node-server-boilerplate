@@ -7,10 +7,13 @@ const enumerateErrorFormat = winston.format((info) => {
   return info;
 });
 
-const formatter = ({ level, message }: { level: string; message: string }) => {
+import type { TransformableInfo } from "logform";
+
+const formatter = (info: TransformableInfo) => {
+  const { level, message } = info;
   const now = new Date();
 
-  return `[${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}] [${level}] ${message}`;
+  return `[${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}] [${level}] ${String(message)}`;
 };
 
 export const logger = winston.createLogger({
