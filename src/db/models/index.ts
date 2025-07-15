@@ -1,2 +1,1 @@
-export { default as PortfolioModel, Portfolio } from "./portfolio";
-export { default as StockModel, Stock } from "./stock";
+export { User, UserProfile, UserEmailVerificationToken } from "./user";

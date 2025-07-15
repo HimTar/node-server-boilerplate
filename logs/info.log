@@ -1,0 +1,76 @@
+[21:15:0] [info] Loading Env Variables
+[21:15:0] [info] Env Variables loaded successfully
+[21:15:0] [info] Connecting to database
+[21:15:0] [error] Failed to connect to database SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[21:15:20] [info] Loading Env Variables
+[21:15:20] [info] Env Variables loaded successfully
+[21:15:20] [info] Connecting to database
+[21:15:21] [error] Failed to connect to database self-signed certificate in certificate chain
+[21:16:25] [info] Loading Env Variables
+[21:16:25] [info] Env Variables loaded successfully
+[21:16:25] [info] Connecting to database
+[21:16:26] [error] Failed to connect to database self-signed certificate in certificate chain
+[21:16:29] [info] Loading Env Variables
+[21:16:29] [info] Env Variables loaded successfully
+[21:16:29] [info] Connecting to database
+[21:16:29] [error] Failed to connect to database self-signed certificate in certificate chain
+[21:16:43] [info] Loading Env Variables
+[21:16:43] [info] Env Variables loaded successfully
+[21:16:43] [info] Connecting to database
+[21:16:44] [error] Failed to connect to database self-signed certificate in certificate chain
+[21:18:27] [info] Loading Env Variables
+[21:18:27] [info] Env Variables loaded successfully
+[21:18:27] [info] Connecting to database
+[21:18:28] [error] Failed to connect to database self-signed certificate in certificate chain
+[21:18:55] [info] Loading Env Variables
+[21:18:55] [info] Env Variables loaded successfully
+[21:18:55] [info] Connecting to database
+[21:18:56] [error] Failed to connect to database self-signed certificate in certificate chain
+[21:19:5] [info] Loading Env Variables
+[21:19:5] [info] Env Variables loaded successfully
+[21:19:5] [info] Connecting to database
+[21:19:5] [error] Failed to connect to database self-signed certificate in certificate chain
+[21:19:9] [info] Loading Env Variables
+[21:19:9] [info] Env Variables loaded successfully
+[21:19:9] [info] Connecting to database
+[21:19:10] [error] Failed to connect to database self-signed certificate in certificate chain
+[21:21:39] [info] Loading Env Variables
+[21:21:39] [info] Env Variables loaded successfully
+[21:21:39] [info] Connecting to database
+[21:21:40] [error] Failed to connect to database self-signed certificate in certificate chain
+[21:22:18] [info] Loading Env Variables
+[21:22:18] [info] Env Variables loaded successfully
+[21:22:18] [info] Connecting to database
+[21:22:19] [info] Established Connection to database
+[21:22:19] [info] Routes successfully registerd !
+[21:22:19] [info] Server Listening on PORT : 8080
+[21:24:39] [info] Loading Env Variables
+[21:24:39] [info] Env Variables loaded successfully
+[21:24:39] [info] Connecting to database
+[21:24:42] [info] Established Connection to database
+[21:24:42] [info] Routes successfully registerd !
+[21:24:42] [info] Server Listening on PORT : 8080
+[21:27:18] [info] Loading Env Variables
+[21:27:18] [info] Env Variables loaded successfully
+[21:27:18] [info] Connecting to database
+[21:27:19] [info] Established Connection to database
+[21:27:19] [info] Routes successfully registerd !
+[21:27:19] [info] Server Listening on PORT : 8080
+[21:30:44] [info] Loading Env Variables
+[21:30:44] [info] Env Variables loaded successfully
+[21:30:44] [info] Connecting to database
+[21:30:46] [info] Established Connection to database
+[21:30:46] [info] Routes successfully registerd !
+[21:30:46] [info] Server Listening on PORT : 8080
+[21:32:51] [info] Loading Env Variables
+[21:32:51] [info] Env Variables loaded successfully
+[21:32:51] [info] Connecting to database
+[21:32:55] [info] Established Connection to database
+[21:32:55] [info] Routes successfully registerd !
+[21:32:55] [info] Server Listening on PORT : 8080
+[21:33:49] [info] Loading Env Variables
+[21:33:49] [info] Env Variables loaded successfully
+[21:33:49] [info] Connecting to database
+[21:33:50] [info] Established Connection to database
+[21:33:50] [info] Routes successfully registerd !
+[21:33:50] [info] Server Listening on PORT : 8080

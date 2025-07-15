@@ -1,39 +1,54 @@
-import mongoose from "mongoose";
-
-import { PortfolioModel, StockModel } from "./models";
-import { generatePortfolioQueries, generateStockQueries } from "./queries";
-
+import { Pool } from "pg";
 import { Config } from "../config";
 import { DBClient } from "./interface";
 import { logger } from "../external";
+import { generateUserQueries } from "./queries";
 
 export const dbClient: DBClient = {
-  db: null,
-  PortfolioQueries: null,
-  StockQueries: null,
+  connection: null,
+  userQueries: null,
 };
+
+let pool: Pool | null = null;
+
+export async function pingDatabase(pool: Pool): Promise<boolean> {
+  try {
+    const { rows } = await pool.query("SELECT 1 AS ok");
+    return rows[0]?.ok === 1;
+  } catch (err) {
+    logger.error("Database ping failed", err);
+    return false;
+  }
+}
 
 export const makeDatabaseConnection = async () => {
+  if (pool) {
+    logger.info("Reusing existing database connection pool");
+    return dbClient;
+  }
+
   logger.info("Connecting to database");
+  pool = new Pool({
+    connectionString: Config.DATABASE_CONNECTION_URL,
+    idleTimeoutMillis: 30_000, // close idle clients after 30s
+    connectionTimeoutMillis: 10_000, // timeout when acquiring a connection
+    ssl: { rejectUnauthorized: false }, // Accept self-signed certs
+  });
 
-  // For mongoose warning
-  mongoose.set("strictQuery", true);
-
-  const connection = await mongoose.connect(Config.databaseURL);
-
-  dbClient.db = connection;
-  dbClient.PortfolioQueries = generatePortfolioQueries(PortfolioModel);
-  dbClient.StockQueries = generateStockQueries(StockModel);
-
-  logger.info("Established Connection to database");
-
-  return dbClient;
-};
-
-export const isValidMongoId = (id: string | null) => {
   try {
-    return mongoose.isValidObjectId(id);
+    await pool.connect();
+    if (!(await pingDatabase(pool))) {
+      throw new Error("Database connection failed");
+    }
+    logger.info("Established Connection to database");
+
+    // Initialize dbClient with the new pool and queries
+    dbClient.connection = pool;
+    dbClient.userQueries = generateUserQueries(pool);
+
+    return dbClient;
   } catch (err) {
-    return false;
+    logger.error("Failed to connect to database", err);
+    throw err;
   }
 };

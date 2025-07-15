@@ -1,8 +1,7 @@
-import mongoose from "mongoose";
-import { generatePortfolioQueries, generateStockQueries } from "./queries";
+import { Pool } from "pg";
+import { generateUserQueries } from "./queries";
 
 export type DBClient = {
-  db: typeof mongoose | null;
-  PortfolioQueries: ReturnType<typeof generatePortfolioQueries> | null;
-  StockQueries: ReturnType<typeof generateStockQueries> | null;
+  connection: Pool | null;
+  userQueries: ReturnType<typeof generateUserQueries> | null;
 };

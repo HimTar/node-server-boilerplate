@@ -1,2 +1,1 @@
-export { generatePortfolioQueries } from "./portfolio";
-export { generateStockQueries } from "./stock";
+export { generateUserQueries } from "./user";
