@@ -48,7 +48,6 @@ src/
 
    ```sh
    git clone <repo-url>
-   cd backend
    ```
 
 2. **Install dependencies**
@@ -89,8 +88,6 @@ src/
 ## API Endpoints
 
 - `GET /health` — Health check
-- `POST /auth/signup` — Register new user
-- `POST /auth/login` — Login user
 
 ## Technologies Used
 
