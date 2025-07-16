@@ -1,6 +1,8 @@
 import cors from "cors";
-import express, { Request, Response, NextFunction, Express } from "express";
+import express, { Express } from "express";
 import helmet from "helmet";
+import { defaultErrorHandler } from "../middlewares/errorHandler";
+import { apiLogger } from "../middlewares/apiLogger";
 
 export const GenerateExpressApplication = (): Express => {
   const expressApp = express();
@@ -9,6 +11,7 @@ export const GenerateExpressApplication = (): Express => {
   expressApp.use(cors());
   expressApp.use(express.json());
   expressApp.use(express.urlencoded({ extended: true }));
+  expressApp.use(apiLogger);
 
   // Graceful shutdown
   const shutdown = () => {
@@ -17,12 +20,6 @@ export const GenerateExpressApplication = (): Express => {
   };
   process.on("SIGTERM", shutdown);
   process.on("SIGINT", shutdown);
-
-  // Default Error Handler
-  expressApp.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    console.error("Unhandled Error:", err);
-    res.status(500).json({ error: "Internal Server Error" });
-  });
 
   return expressApp;
 };

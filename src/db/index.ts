@@ -5,8 +5,22 @@ import { logger } from "../external";
 import { generateUserQueries } from "./queries";
 
 export const dbClient: DBClient = {
-  connection: null,
-  userQueries: null,
+  connection: undefined!,
+  userQueries: undefined!,
+  transaction: async (callback) => {
+    if (!dbClient.connection) {
+      throw new Error("Database connection is not established");
+    }
+    const client = dbClient.connection;
+    try {
+      await client.query("BEGIN");
+      await callback();
+      await client.query("COMMIT");
+    } catch (error) {
+      await client.query("ROLLBACK");
+      throw error;
+    }
+  },
 };
 
 let pool: Pool | null = null;
