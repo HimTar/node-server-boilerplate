@@ -1,7 +1,6 @@
 import cors from "cors";
 import express, { Express } from "express";
 import helmet from "helmet";
-import { defaultErrorHandler } from "../middlewares/errorHandler";
 import { apiLogger } from "../middlewares/apiLogger";
 
 export const GenerateExpressApplication = (): Express => {

@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { logger } from "../external";
+import { logger } from "../lib";
 
 export const Config = {
   ENV: "",

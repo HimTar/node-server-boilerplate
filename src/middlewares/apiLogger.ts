@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { logger } from "../external";
+import { logger } from "../lib";
 
 export const apiLogger = (req: Request, res: Response, next: NextFunction) => {
   logger.info(

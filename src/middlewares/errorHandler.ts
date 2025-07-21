@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { isHttpError } from "http-errors";
 
-import { logger } from "../external";
+import { logger } from "../lib";
 
 export const defaultErrorHandler = (
   err: Error,

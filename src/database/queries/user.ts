@@ -1,9 +1,11 @@
 import { Pool } from "pg";
-import { logger } from "../../external";
+import { logger } from "../../lib";
 import { User, UserEmailVerificationToken, UserProfile } from "../models";
 
 export const generateUserQueries = (conection: Pool) => {
-  logger.info("Generating Queries for Portfolio Collection");
+  logger.info(
+    "Generating Queries for User, UserProfile, UserEmailVerificationToken Models"
+  );
 
   return Object.freeze({
     // User Queries

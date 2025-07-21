@@ -1,10 +1,22 @@
-import { makeDatabaseConnection } from "./db";
+import { makeDatabaseConnection } from "./database";
 
-import { registerRoutes } from "./services";
+import { setupRoutes } from "./modules";
 
-import { GenerateExpressApplication, logger } from "./external";
+import { GenerateExpressApplication, logger } from "./lib";
 import { Config, loadConfigs } from "./config";
 import { defaultErrorHandler } from "./middlewares/errorHandler";
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: {
+        userId: string;
+        email: string;
+        username: string;
+      };
+    }
+  }
+}
 
 const StartServer = async () => {
   // Loading Config Variables
@@ -20,8 +32,8 @@ const StartServer = async () => {
     res.status(200).json({ status: "ok", message: "Server is healthy" });
   });
 
-  // Registring Routes
-  registerRoutes(app);
+  // Setting up routes and onboarding modules
+  setupRoutes(app);
 
   // default error handler
   app.use(defaultErrorHandler);

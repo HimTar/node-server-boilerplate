@@ -1,9 +1,9 @@
-import { CreateUserInput, User } from "../../db/models/user";
+import { CreateUserInput, User } from "../../database/models/user";
 import { BadRequest } from "http-errors";
-import { dbClient } from "../../db";
-import { generateV7Uuid } from "../../external/uuid";
-import { comparePassword, encryptPassword } from "../../external/encrypt";
-import { generateToken } from "../../external/jwt";
+import { dbClient } from "../../database";
+import { generateV7Uuid } from "../../lib/uuid";
+import { comparePassword, encryptPassword } from "../../lib/encrypt";
+import { generateToken } from "../../lib/jwt";
 import { Config } from "../../config";
 
 export const createNewUser = async (user: CreateUserInput) => {
@@ -42,9 +42,14 @@ export const createNewUser = async (user: CreateUserInput) => {
 };
 
 const validateUserInput = async (user: CreateUserInput) => {
-  const existingUser = await dbClient.userQueries?.findUserByEmail(user.email);
+  let existingUser = await dbClient.userQueries?.findUserByEmail(user.email);
   if (existingUser) {
     throw new BadRequest("Email already in use");
+  }
+
+  existingUser = await dbClient.userQueries?.findUserByUsername(user.username);
+  if (existingUser) {
+    throw new BadRequest("Username already in use");
   }
 };
 

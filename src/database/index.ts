@@ -1,7 +1,7 @@
 import { Pool } from "pg";
 import { Config } from "../config";
 import { DBClient } from "./interface";
-import { logger } from "../external";
+import { logger } from "../lib";
 import { generateUserQueries } from "./queries";
 
 export const dbClient: DBClient = {
@@ -41,7 +41,7 @@ export const makeDatabaseConnection = async () => {
     return dbClient;
   }
 
-  logger.info("Connecting to database");
+  logger.info("Creating new database connection pool");
   pool = new Pool({
     connectionString: Config.DATABASE_CONNECTION_URL,
     idleTimeoutMillis: 30_000, // close idle clients after 30s
