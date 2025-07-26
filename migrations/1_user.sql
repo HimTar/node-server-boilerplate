@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS email_verification_token (
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX IF NOT EXISTS idx_email_verification_tokens_user_id ON email_verification_token(user_id);
+CREATE INDEX IF NOT EXISTS idx_email_verification_token_user_id ON email_verification_token(user_id);
 
 -- User profile table: stores additional profile details
 CREATE TABLE IF NOT EXISTS user_profile (

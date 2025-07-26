@@ -43,3 +43,15 @@ export interface UserEmailVerificationToken {
 }
 
 // User Email Verification Token Model Section Ends
+
+// User Refresh Token Model Section
+export interface UserRefreshToken {
+  id: string; // UUID
+  user_id: string; // UUID
+  refresh_token: string;
+  created_at: Date; // ISO date string
+  expires_at: Date; // ISO date string
+  revoked_at: Date | null; // ISO date string or null
+}
+
+// User Refresh Token Model Section Ends
